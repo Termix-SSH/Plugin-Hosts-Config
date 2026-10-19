@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { fireEvent, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import {
   renderWithApp,
   type RenderedPluginApp,
@@ -18,53 +18,34 @@ afterEach(async () => {
   rendered = null;
 });
 
+const status = {
+  enabled: true,
+  path: "/config/hosts.yaml",
+  strict: true,
+  hosts: 3,
+  lastLoadedAt: "2026-10-19T10:00:00.000Z",
+  lastAttemptAt: "2026-10-19T10:00:00.000Z",
+  errors: ["hosts[1].port: must be a whole number from 1 to 65535"],
+  applyErrors: [],
+  warnings: [],
+  lastResult: { created: 3, updated: 0, deleted: 0 },
+};
+
 describe(`${manifest.id} activate`, () => {
-  it("registers the rail item and tab", async () => {
+  it("registers the status settings component", async () => {
     rendered = await renderWithApp(plugin, { manifest, locales });
-    expect(rendered.registered.tabs()).toEqual(["hello-world"]);
-    expect(rendered.registered.railItems()).toEqual([
-      expect.objectContaining({
-        id: "hello-world",
-        permission: "hello-world.use",
-      }),
-    ]);
+    expect(rendered.registered.settingsComponents()).toEqual(["status"]);
   });
 
-  it("shows the greeting and notes", async () => {
+  it("shows the file, host count and errors", async () => {
     rendered = await renderWithApp(plugin, {
       manifest,
       locales,
-      api: {
-        get: vi.fn(async () => ({
-          data: {
-            greeting: "Hi there",
-            notes: [{ id: 1, text: "first", createdAt: "" }],
-          },
-        })),
-      } as never,
+      api: { get: vi.fn(async () => ({ data: status })) } as never,
     });
-    rendered.renderTab("hello-world", { isVisible: true });
-    expect(await screen.findByText("Hi there")).toBeTruthy();
-    expect(screen.getByText("first")).toBeTruthy();
-  });
-
-  it("shows an error when a note cannot be saved", async () => {
-    rendered = await renderWithApp(plugin, {
-      manifest,
-      locales,
-      api: {
-        get: vi.fn(async () => ({ data: { greeting: "Hello", notes: [] } })),
-        post: vi.fn(async () => {
-          throw new Error("offline");
-        }),
-      } as never,
-    });
-    rendered.renderTab("hello-world", { isVisible: true });
-    await screen.findByText(locales.tab.empty);
-    fireEvent.change(screen.getByPlaceholderText(locales.tab.placeholder), {
-      target: { value: "note" },
-    });
-    fireEvent.click(screen.getByText(locales.tab.add));
-    expect(await screen.findByText(locales.tab.error)).toBeTruthy();
+    rendered.renderSettingsComponent("status", { running: true });
+    expect(await screen.findByText("File: /config/hosts.yaml")).toBeTruthy();
+    expect(screen.getByText(/3 hosts from the file/)).toBeTruthy();
+    expect(screen.getByText(status.errors[0])).toBeTruthy();
   });
 });

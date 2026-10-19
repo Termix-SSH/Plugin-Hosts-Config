@@ -1,24 +1,30 @@
 import {
   defineTable,
   id,
+  refHost,
   refUser,
-  text,
-  timestamp,
+  varchar,
 } from "@termix-ssh/plugin-sdk/db";
 
-// Stored as p_hello_world_notes. The prefix comes from the plugin id.
-export const notes = defineTable(
-  "notes",
+// Stored as p_hosts_config_hosts: which Termix host each file id became, so a
+// reload updates the same host. The row goes with the host when it is deleted.
+export const managedHosts = defineTable(
+  "hosts",
   {
     id: id(),
-    userId: refUser(),
-    text: text().notNull(),
-    createdAt: timestamp().notNull().defaultNow(),
+    configId: varchar(100).notNull(),
+    hostId: refHost(),
+    ownerId: refUser(),
   },
   {
-    indexes: [{ name: "idx_p_hello_world_notes_user_id", columns: ["userId"] }],
+    uniques: [
+      { name: "uq_p_hosts_config_hosts_config_id", columns: ["configId"] },
+    ],
+    indexes: [
+      { name: "idx_p_hosts_config_hosts_host_id", columns: ["hostId"] },
+    ],
   },
 );
 
 // termix-plugin migrations reads this list.
-export const tables = [notes];
+export const tables = [managedHosts];

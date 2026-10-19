@@ -1,56 +1,65 @@
 {
-  "id": "hello-world",
-  "name": "Hello World",
+  "id": "hosts-config",
+  "name": "Hosts Config",
   "version": "1.0.0",
-  "description": "A minimal Termix plugin: one tab, one route, one setting and one table.",
+  "description": "Keep hosts, folders and sharing in a YAML or JSON file. Termix loads them as read only hosts and reloads when the file changes.",
   "author": {
-    "name": "Your Name"
+    "name": "Termix"
   },
   "license": "Apache-2.0",
-  "repository": "https://github.com/your-org/termix-plugin-hello-world",
-  "docs": "https://github.com/your-org/termix-plugin-hello-world/tree/main/docs",
-  "category": "Productivity",
-  "icon": "Hand",
+  "repository": "https://github.com/Termix-SSH/Plugin-Hosts-Config",
+  "docs": "https://docs.termix.site/plugins/hosts-config",
+  "category": "Infrastructure",
+  "icon": "FileCode",
   "features": [
-    "A tab opened from the sidebar",
-    "An admin setting",
-    "A table of greetings"
+    "SSH, RDP, VNC, Telnet and any plugin protocol from one YAML or JSON file",
+    "Hosts from the file are read only, while pins and order stay with each user",
+    "Secrets from env vars, files or saved credentials, never written in the file",
+    "Shares with users and roles, per host or per folder",
+    "Turn plugin features on or off per host",
+    "Reloads when the file changes, with clear errors when it can't apply",
+    "Strict mode so every host comes from the file"
   ],
-  "env": [],
+  "env": [
+    {
+      "name": "TERMIX_HOSTS_CONFIG",
+      "description": "Path to the hosts file (.yaml, .yml or .json). Unset means the plugin loads nothing and locks no hosts."
+    }
+  ],
   "engine": {
-    "termix": ">=26.10.0",
-    "api": "^1.2"
+    "termix": ">=26.10.3",
+    "api": "^1.6"
   },
-  "capabilities": ["db:own", "network:serve", "ui:surface"],
+  "capabilities": [
+    "db:own",
+    "hosts:read",
+    "hosts:write",
+    "hosts:lock",
+    "credentials:use",
+    "users:impersonate",
+    "network:serve",
+    "ui:surface"
+  ],
   "contributes": {
-    "tabs": [
-      {
-        "id": "hello-world",
-        "titleKey": "tab.title",
-        "icon": "Hand",
-        "openFrom": ["rail"]
-      }
-    ],
     "permissions": [
       {
-        "name": "use",
-        "titleKey": "permissions.use.title",
-        "descriptionKey": "permissions.use.description",
-        "defaultRoles": ["admin", "user"]
+        "name": "manage",
+        "titleKey": "permissions.manage.title",
+        "descriptionKey": "permissions.manage.description",
+        "defaultRoles": ["admin"]
       }
     ],
     "settings": {
       "admin": [
         {
-          "key": "greeting",
-          "type": "string",
-          "labelKey": "settings.admin.greeting.label",
-          "descriptionKey": "settings.admin.greeting.description",
-          "default": "Hello"
+          "key": "status",
+          "type": "custom",
+          "component": "status"
         }
       ]
     }
   },
   "locales": "locales",
-  "platforms": ["linux", "win32", "darwin"]
+  "platforms": ["linux", "win32", "darwin"],
+  "desktop": "server"
 }

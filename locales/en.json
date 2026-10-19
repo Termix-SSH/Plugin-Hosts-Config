@@ -1,27 +1,28 @@
 {
   "plugin": {
-    "name": "Hello World",
-    "description": "A minimal Termix plugin: one tab, one route, one setting and one table."
-  },
-  "tab": {
-    "title": "Hello World",
-    "empty": "No notes yet.",
-    "placeholder": "Write a note",
-    "add": "Add",
-    "error": "Could not load or save notes."
+    "name": "Hosts Config",
+    "description": "Keep hosts, folders and sharing in a YAML or JSON file. Termix loads them as read only hosts and reloads when the file changes."
   },
   "permissions": {
-    "use": {
-      "title": "Use Hello World",
-      "description": "Open the Hello World tab and keep notes in it."
+    "manage": {
+      "title": "Manage the hosts file",
+      "description": "See the hosts file status and reload it."
     }
   },
-  "settings": {
-    "admin": {
-      "greeting": {
-        "label": "Greeting",
-        "description": "Shown at the top of the Hello World tab."
-      }
-    }
+  "status": {
+    "title": "Hosts file",
+    "notSet": "Set TERMIX_HOSTS_CONFIG to the path of a hosts file to use this plugin.",
+    "file": "File: {{path}}",
+    "hosts_one": "{{count}} host from the file",
+    "hosts_other": "{{count}} hosts from the file",
+    "strict": "Hosts can only be added in the file",
+    "lastLoaded": "Last applied {{date}}",
+    "neverLoaded": "Not applied yet",
+    "errorsTitle": "The last change was not applied:",
+    "applyErrorsTitle": "These hosts could not be written:",
+    "reload": "Reload now",
+    "reloading": "Reloading...",
+    "applied": "Hosts file applied",
+    "notApplied": "The hosts file has problems and was not applied"
   }
 }

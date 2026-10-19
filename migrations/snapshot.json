@@ -1,32 +1,41 @@
 {
   "version": 1,
   "tables": {
-    "notes": {
+    "hosts": {
       "columns": {
         "id": {
           "type": "id",
           "primaryKey": true,
           "notNull": true
         },
-        "userId": {
+        "configId": {
+          "type": "varchar",
+          "length": 100,
+          "notNull": true
+        },
+        "hostId": {
+          "type": "refHost",
+          "notNull": true
+        },
+        "ownerId": {
           "type": "refUser",
           "length": 255,
           "notNull": true
-        },
-        "text": {
-          "type": "text",
-          "notNull": true
-        },
-        "createdAt": {
-          "type": "timestamp",
-          "notNull": true,
-          "defaultNow": true
         }
       },
       "indexes": [
         {
-          "name": "idx_p_hello_world_notes_user_id",
-          "columns": ["userId"]
+          "name": "uq_p_hosts_config_hosts_config_id",
+          "columns": [
+            "configId"
+          ],
+          "unique": true
+        },
+        {
+          "name": "idx_p_hosts_config_hosts_host_id",
+          "columns": [
+            "hostId"
+          ]
         }
       ]
     }

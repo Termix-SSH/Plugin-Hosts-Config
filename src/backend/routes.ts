@@ -1,76 +1,61 @@
-import type { Request, Response, Router } from "express";
-import { desc, eq } from "drizzle-orm";
-import type { BetterSQLite3Database } from "drizzle-orm/better-sqlite3";
+import type { Request, RequestHandler, Response, Router } from "express";
 import type { PluginContext } from "@termix-ssh/plugin-sdk/backend";
-
-// The table object ctx.db.define hands back. Drizzle's own types are
-// per dialect, so the routes treat it loosely.
-type NotesTable = any;
+import type { Loader } from "./loader.js";
 
 export function registerRoutes(
-  router: Router,
   ctx: PluginContext,
-  notesTable: NotesTable,
+  router: Router,
+  loader: Loader,
 ): void {
-  router.use(ctx.rbac.require("use") as never);
-
-  const client = () => ctx.db.client<BetterSQLite3Database>();
-  const actor = () => ctx.currentActor() as string;
+  router.use(ctx.rbac.require("manage") as unknown as RequestHandler);
 
   /**
    * @openapi
-   * /plugin-api/hello-world/notes:
+   * /plugin-api/hosts-config/status:
    *   get:
-   *     summary: List the signed-in user's notes and the admin greeting
-   *     tags:
-   *       - Hello World
+   *     summary: Hosts file status
+   *     description: The file path, when it last applied, how many hosts it manages, and any problems from the last load.
+   *     tags: [Hosts Config]
    *     responses:
    *       200:
-   *         description: The greeting and the notes, newest first
+   *         description: Status.
+   *       403:
+   *         description: Missing the hosts-config.manage permission.
    */
-  router.get("/notes", async (_req: Request, res: Response) => {
-    const db = await client();
-    const rows = await db
-      .select()
-      .from(notesTable)
-      .where(eq(notesTable.userId, actor()))
-      .orderBy(desc(notesTable.id));
-    const greeting = (await ctx.settings.get<string>("greeting")) ?? "Hello";
-    res.json({ greeting, notes: rows });
+  router.get("/status", (_req: Request, res: Response) => {
+    res.json(loader.status());
   });
 
   /**
    * @openapi
-   * /plugin-api/hello-world/notes:
+   * /plugin-api/hosts-config/reload:
    *   post:
-   *     summary: Add a note for the signed-in user
-   *     tags:
-   *       - Hello World
-   *     requestBody:
-   *       required: true
-   *       content:
-   *         application/json:
-   *           schema:
-   *             type: object
-   *             properties:
-   *               text:
-   *                 type: string
+   *     summary: Reload the hosts file now
+   *     description: Reads the file again and applies it, even when it has not changed. A file with problems applies nothing.
+   *     tags: [Hosts Config]
    *     responses:
-   *       201:
-   *         description: Note added
+   *       200:
+   *         description: The status after the load. errors is empty when it applied.
    *       400:
-   *         description: Missing or empty text
+   *         description: TERMIX_HOSTS_CONFIG is not set.
+   *       403:
+   *         description: Missing the hosts-config.manage permission.
    */
-  router.post("/notes", async (req: Request, res: Response) => {
-    const text = typeof req.body?.text === "string" ? req.body.text.trim() : "";
-    if (!text || text.length > 1000) {
-      return res.status(400).json({ error: "text is required" });
+  router.post("/reload", async (req: Request, res: Response) => {
+    if (!loader.status().enabled) {
+      return res
+        .status(400)
+        .json({ error: "TERMIX_HOSTS_CONFIG is not set", ...loader.status() });
     }
-    const db = await client();
-    // No returning(): MySQL does not support it.
-    await db.insert(notesTable).values({ userId: actor(), text });
-    // SQLite only reaches disk when asked.
-    await ctx.db.persist();
-    res.status(201).json({ success: true });
+    const status = await loader.load(true);
+    await ctx.audit.record({
+      action: "reload",
+      details: status.errors.length
+        ? `hosts file not applied: ${status.errors.length} problem(s)`
+        : "hosts file applied",
+      success: status.errors.length === 0,
+      request: req,
+    });
+    res.json(status);
   });
 }
