@@ -9,6 +9,7 @@
   "license": "Apache-2.0",
   "repository": "https://github.com/Termix-SSH/Plugin-Hosts-Config",
   "docs": "https://docs.termix.site/plugins/hosts-config",
+  "video": "https://www.youtube.com/watch?v=N7bYLsRNO7w",
   "category": "Infrastructure",
   "icon": "FileCode",
   "features": [

@@ -6,6 +6,12 @@
 
 <p>Keep hosts, folders and sharing in a YAML or JSON file. Termix loads them as read only hosts and reloads when the file changes</p>
 
+<!-- VIDEO:START -->
+
+<a href="https://www.youtube.com/watch?v=N7bYLsRNO7w"><img src="https://img.shields.io/badge/Watch_the_demo-f59145?style=for-the-badge&logo=youtube&logoColor=white" alt="Watch the demo on YouTube" /></a>
+
+<!-- VIDEO:END -->
+
 </div>
 
 <br />
