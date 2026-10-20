@@ -1,0 +1,28 @@
+{
+  "plugin": {
+    "name": "Hosts Config",
+    "description": "Διατηρήστε τους hosts, τους φακέλους και το κοινόχρηστο σε ένα αρχείο YAML ή JSON. Το Termix τα φορτώνει ως hosts μόνο για ανάγνωση και τα επαναφορτώνει όταν αλλάξει το αρχείο."
+  },
+  "permissions": {
+    "manage": {
+      "title": "Διαχείριση του αρχείου hosts",
+      "description": "Προβολή της κατάστασης του αρχείου hosts και επαναφόρτωσή του."
+    }
+  },
+  "status": {
+    "title": "Αρχείο hosts",
+    "notSet": "Ορίστε το TERMIX_HOSTS_CONFIG στην διαδρομή ενός αρχείου hosts για να χρησιμοποιήσετε αυτό το plugin.",
+    "file": "Αρχείο: {{path}}",
+    "hosts_one": "{{count}} host από το αρχείο",
+    "hosts_other": "{{count}} hosts από το αρχείο",
+    "strict": "Οι hosts μπορούν να προστεθούν μόνο στο αρχείο",
+    "lastLoaded": "Τελευταία εφαρμογή {{date}}",
+    "neverLoaded": "Δεν έχει εφαρμοστεί ακόμα",
+    "errorsTitle": "Η τελευταία αλλαγή δεν εφαρμόστηκε:",
+    "applyErrorsTitle": "Αυτοί οι hosts δεν μπόρεσαν να γραφτούν:",
+    "reload": "Επαναφόρτωση τώρα",
+    "reloading": "Επαναφόρτωση...",
+    "applied": "Το αρχείο hosts εφαρμόστηκε",
+    "notApplied": "Το αρχείο hosts έχει προβλήματα και δεν εφαρμόστηκε"
+  }
+}

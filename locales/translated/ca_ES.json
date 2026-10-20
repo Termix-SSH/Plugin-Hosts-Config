@@ -1,0 +1,29 @@
+{
+  "plugin": {
+    "name": "Configuració d'amfitrions",
+    "description": "Mantén els amfitrions, carpetes i la compartició en un fitxer YAML o JSON. Termix els carrega com a amfitrions de només lectura i els recarrega quan el fitxer canvia."
+  },
+  "permissions": {
+    "manage": {
+      "title": "Gestionar el fitxer d'amfitrions",
+      "description": "Veure l'estat del fitxer d'amfitrions i recarregar-lo."
+    }
+  },
+  "status": {
+    "title": "Fitxer d'amfitrions",
+    "notSet": "Estableix TERMIX_HOSTS_CONFIG a la ruta d'un fitxer d'amfitrions per utilitzar aquest complement.",
+    "file": "Fitxer: {{path}}",
+    "hosts_one": "{{count}} amfitrió del fitxer",
+    "hosts_many": "{{count}} amfitrions del fitxer",
+    "hosts_other": "{{count}} amfitrions del fitxer",
+    "strict": "Els amfitrions només es poden afegir al fitxer",
+    "lastLoaded": "Última aplicació {{date}}",
+    "neverLoaded": "Encara no s'ha aplicat",
+    "errorsTitle": "L'últim canvi no s'ha aplicat:",
+    "applyErrorsTitle": "Aquests amfitrions no s'han pogut escriure:",
+    "reload": "Recarregar ara",
+    "reloading": "Recarregant...",
+    "applied": "Fitxer d'amfitrions aplicat",
+    "notApplied": "El fitxer d'amfitrions té problemes i no s'ha aplicat"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "plugin": {
+    "name": "主机配置",
+    "description": "将主机、文件夹和共享信息保存在 YAML 或 JSON 文件中。Termix 会以只读方式加载这些主机，并在文件更改时自动重新加载。"
+  },
+  "permissions": {
+    "manage": {
+      "title": "管理主机文件",
+      "description": "查看主机文件状态并重新加载。"
+    }
+  },
+  "status": {
+    "title": "主机文件",
+    "notSet": "将 TERMIX_HOSTS_CONFIG 设置为主机文件的路径以使用此插件。",
+    "file": "文件：{{path}}",
+    "hosts_other": "从文件中加载了 {{count}} 个主机",
+    "strict": "主机只能通过文件添加",
+    "lastLoaded": "上次应用时间：{{date}}",
+    "neverLoaded": "尚未应用",
+    "errorsTitle": "上次更改未应用：",
+    "applyErrorsTitle": "以下主机无法写入：",
+    "reload": "立即重新加载",
+    "reloading": "正在重新加载...",
+    "applied": "主机文件已应用",
+    "notApplied": "主机文件存在问题，未应用"
+  }
+}

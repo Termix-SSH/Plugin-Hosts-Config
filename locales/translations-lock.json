@@ -1,0 +1,19 @@
+{
+  "plugin.name": "36e5b49c1cf0",
+  "plugin.description": "c911e1add613",
+  "permissions.manage.title": "60e7166b2e7f",
+  "permissions.manage.description": "aafca1ca6dcb",
+  "status.title": "347b1d50df0d",
+  "status.notSet": "a0211c92fbcf",
+  "status.file": "33e269dbf20b",
+  "status.hosts": "3ccde849aa3b",
+  "status.strict": "6530186ec7e6",
+  "status.lastLoaded": "4560a0d36875",
+  "status.neverLoaded": "af8a00b37e1f",
+  "status.errorsTitle": "c8d99fcba449",
+  "status.applyErrorsTitle": "96efb9b885e1",
+  "status.reload": "dfacbf4e04d9",
+  "status.reloading": "43958d853205",
+  "status.applied": "746b807eef81",
+  "status.notApplied": "75f24503501d"
+}

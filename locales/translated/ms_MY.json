@@ -1,0 +1,27 @@
+{
+  "plugin": {
+    "name": "Konfigurasi Host",
+    "description": "Simpan host, folder, dan perkongsian dalam fail YAML atau JSON. Termix memuatkannya sebagai host baca sahaja dan memuat semula apabila fail berubah."
+  },
+  "permissions": {
+    "manage": {
+      "title": "Urus fail host",
+      "description": "Lihat status fail host dan muat semula."
+    }
+  },
+  "status": {
+    "title": "Fail host",
+    "notSet": "Tetapkan TERMIX_HOSTS_CONFIG kepada laluan fail host untuk menggunakan plugin ini.",
+    "file": "Fail: {{path}}",
+    "hosts_other": "{{count}} host daripada fail",
+    "strict": "Host hanya boleh ditambah dalam fail",
+    "lastLoaded": "Diterapkan terakhir {{date}}",
+    "neverLoaded": "Belum diterapkan",
+    "errorsTitle": "Perubahan terakhir tidak diterapkan:",
+    "applyErrorsTitle": "Host ini tidak dapat ditulis:",
+    "reload": "Muat semula sekarang",
+    "reloading": "Memuat semula...",
+    "applied": "Fail host diterapkan",
+    "notApplied": "Fail host mempunyai masalah dan tidak diterapkan"
+  }
+}

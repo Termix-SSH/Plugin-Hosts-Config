@@ -1,0 +1,29 @@
+{
+  "plugin": {
+    "name": "Hostu konfigurācija",
+    "description": "Saglabājiet hostus, mapes un koplietošanas iestatījumus YAML vai JSON failā. Termix tos ielādē kā tikai lasāmus hostus un pārlādē, kad fails tiek mainīts."
+  },
+  "permissions": {
+    "manage": {
+      "title": "Pārvaldīt hostu failu",
+      "description": "Apskatīt hostu faila statusu un to pārlādēt."
+    }
+  },
+  "status": {
+    "title": "Hostu fails",
+    "notSet": "Lai izmantotu šo spraudni, iestatiet TERMIX_HOSTS_CONFIG uz hostu faila ceļu.",
+    "file": "Fails: {{path}}",
+    "hosts_zero": "0 hosti no faila",
+    "hosts_one": "{{count}} hosts no faila",
+    "hosts_other": "{{count}} hosti no faila",
+    "strict": "Hostus var pievienot tikai failā",
+    "lastLoaded": "Pēdējo reizi piemērots {{date}}",
+    "neverLoaded": "Vēl nav piemērots",
+    "errorsTitle": "Pēdējās izmaiņas netika piemērotas:",
+    "applyErrorsTitle": "Šos hostus neizdevās ierakstīt:",
+    "reload": "Pārlādēt tagad",
+    "reloading": "Notiek pārlāde...",
+    "applied": "Hostu fails piemērots",
+    "notApplied": "Hostu failā ir problēmas, un tas netika piemērots"
+  }
+}

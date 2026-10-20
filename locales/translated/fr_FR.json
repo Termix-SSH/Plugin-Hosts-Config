@@ -1,0 +1,29 @@
+{
+  "plugin": {
+    "name": "Configuration des hôtes",
+    "description": "Conservez les hôtes, les dossiers et le partage dans un fichier YAML ou JSON. Termix les charge en lecture seule et recharge les données lorsque le fichier est modifié."
+  },
+  "permissions": {
+    "manage": {
+      "title": "Gérer le fichier d'hôtes",
+      "description": "Afficher l'état du fichier d'hôtes et le recharger."
+    }
+  },
+  "status": {
+    "title": "Fichier d'hôtes",
+    "notSet": "Définissez TERMIX_HOSTS_CONFIG sur le chemin d'un fichier d'hôtes pour utiliser ce plugin.",
+    "file": "Fichier : {{path}}",
+    "hosts_one": "{{count}} hôte issu du fichier",
+    "hosts_many": "{{count}} hôtes issus du fichier",
+    "hosts_other": "{{count}} hôtes issus du fichier",
+    "strict": "Les hôtes ne peuvent être ajoutés que dans le fichier",
+    "lastLoaded": "Dernière application {{date}}",
+    "neverLoaded": "Non encore appliqué",
+    "errorsTitle": "Le dernier changement n'a pas été appliqué :",
+    "applyErrorsTitle": "Ces hôtes n'ont pas pu être écrits :",
+    "reload": "Recharger maintenant",
+    "reloading": "Rechargement...",
+    "applied": "Fichier d'hôtes appliqué",
+    "notApplied": "Le fichier d'hôtes présente des problèmes et n'a pas été appliqué"
+  }
+}

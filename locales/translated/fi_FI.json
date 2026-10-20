@@ -1,0 +1,28 @@
+{
+  "plugin": {
+    "name": "Hosts Config",
+    "description": "Pidä isäntiä, kansioita ja jakoa YAML- tai JSON-tiedostossa. Termix lataa ne vain lukuoikeudella ja päivittää tiedoston muututtua."
+  },
+  "permissions": {
+    "manage": {
+      "title": "Hallitse isäntätiedostoa",
+      "description": "Näytä isäntätiedoston tila ja lataa se uudelleen."
+    }
+  },
+  "status": {
+    "title": "Isäntätiedosto",
+    "notSet": "Aseta TERMIX_HOSTS_CONFIG-isäntätiedoston polku käyttääksesi tätä lisäosaa.",
+    "file": "Tiedosto: {{path}}",
+    "hosts_one": "{{count}} isäntä tiedostosta",
+    "hosts_other": "{{count}} isäntää tiedostosta",
+    "strict": "Isäntiä voidaan lisätä vain tiedostoon",
+    "lastLoaded": "Viimeksi sovellettu {{date}}",
+    "neverLoaded": "Ei vielä sovellettu",
+    "errorsTitle": "Viimeistä muutosta ei voitu soveltaa:",
+    "applyErrorsTitle": "Näitä isäntiä ei voitu kirjoittaa:",
+    "reload": "Lataa uudelleen nyt",
+    "reloading": "Ladataan uudelleen...",
+    "applied": "Isäntätiedosto sovellettu",
+    "notApplied": "Isäntätiedostossa on ongelmia, eikä sitä voitu soveltaa"
+  }
+}

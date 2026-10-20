@@ -1,0 +1,27 @@
+{
+  "plugin": {
+    "name": "ホスト設定",
+    "description": "ホスト、フォルダ、共有設定を YAML または JSON ファイルで管理します。Termix はこれを読み取り専用ホストとして読み込み、ファイルが変更された際に再読み込みします。"
+  },
+  "permissions": {
+    "manage": {
+      "title": "ホストファイルの管理",
+      "description": "ホストファイルのステータスを確認し、再読み込みします。"
+    }
+  },
+  "status": {
+    "title": "ホストファイル",
+    "notSet": "このプラグインを使用するには、TERMIX_HOSTS_CONFIG をホストファイルのパスに設定してください。",
+    "file": "ファイル: {{path}}",
+    "hosts_other": "ファイルから {{count}} 件のホスト",
+    "strict": "ホストはファイルでのみ追加できます",
+    "lastLoaded": "最終適用: {{date}}",
+    "neverLoaded": "まだ適用されていません",
+    "errorsTitle": "最後の変更は適用されませんでした:",
+    "applyErrorsTitle": "これらのホストは書き込めませんでした:",
+    "reload": "今すぐ再読み込み",
+    "reloading": "再読み込み中...",
+    "applied": "ホストファイルを適用しました",
+    "notApplied": "ホストファイルに問題があり、適用されませんでした"
+  }
+}

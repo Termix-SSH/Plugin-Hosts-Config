@@ -1,0 +1,29 @@
+{
+  "plugin": {
+    "name": "Configuração de Hosts",
+    "description": "Mantenha hosts, pastas e partilhas num ficheiro YAML ou JSON. O Termix carrega-os como hosts de apenas leitura e recarrega quando o ficheiro é alterado."
+  },
+  "permissions": {
+    "manage": {
+      "title": "Gerir o ficheiro de hosts",
+      "description": "Ver o estado do ficheiro de hosts e recarregá-lo."
+    }
+  },
+  "status": {
+    "title": "Ficheiro de hosts",
+    "notSet": "Defina TERMIX_HOSTS_CONFIG para o caminho de um ficheiro de hosts para utilizar este plugin.",
+    "file": "Ficheiro: {{path}}",
+    "hosts_one": "{{count}} host do ficheiro",
+    "hosts_many": "{{count}} hosts do ficheiro",
+    "hosts_other": "{{count}} hosts do ficheiro",
+    "strict": "Os hosts só podem ser adicionados no ficheiro",
+    "lastLoaded": "Última aplicação {{date}}",
+    "neverLoaded": "Ainda não aplicado",
+    "errorsTitle": "A última alteração não foi aplicada:",
+    "applyErrorsTitle": "Estes hosts não puderam ser gravados:",
+    "reload": "Recarregar agora",
+    "reloading": "A recarregar...",
+    "applied": "Ficheiro de hosts aplicado",
+    "notApplied": "O ficheiro de hosts tem problemas e não foi aplicado"
+  }
+}

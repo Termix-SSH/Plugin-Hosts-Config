@@ -1,0 +1,28 @@
+{
+  "plugin": {
+    "name": "Hosts Config",
+    "description": "Behåll värdar, mappar och delning i en YAML- eller JSON-fil. Termix läser in dem som skrivskyddade värdar och laddar om när filen ändras."
+  },
+  "permissions": {
+    "manage": {
+      "title": "Hantera värdarfilen",
+      "description": "Visa status för värdarfilen och ladda om den."
+    }
+  },
+  "status": {
+    "title": "Värdarfil",
+    "notSet": "Ställ in TERMIX_HOSTS_CONFIG till sökvägen för en värdarfil för att använda detta plugin.",
+    "file": "Fil: {{path}}",
+    "hosts_one": "{{count}} värd från filen",
+    "hosts_other": "{{count}} värdar från filen",
+    "strict": "Värdar kan bara läggas till i filen",
+    "lastLoaded": "Senast tillämpad {{date}}",
+    "neverLoaded": "Inte tillämpad ännu",
+    "errorsTitle": "Den senaste ändringen kunde inte tillämpas:",
+    "applyErrorsTitle": "Dessa värdar kunde inte skrivas:",
+    "reload": "Ladda om nu",
+    "reloading": "Laddar om...",
+    "applied": "Värdarfilen har tillämpats",
+    "notApplied": "Värdarfilen har problem och kunde inte tillämpas"
+  }
+}

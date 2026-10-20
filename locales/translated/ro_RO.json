@@ -1,0 +1,29 @@
+{
+  "plugin": {
+    "name": "Configurație gazde",
+    "description": "Păstrează gazdele, folderele și setările de partajare într-un fișier YAML sau JSON. Termix le încarcă ca gazde doar în citire și le reîncarcă când fișierul se modifică."
+  },
+  "permissions": {
+    "manage": {
+      "title": "Gestionează fișierul de gazde",
+      "description": "Vizualizează starea fișierului de gazde și reîncarcă-l."
+    }
+  },
+  "status": {
+    "title": "Fișierul de gazde",
+    "notSet": "Setează TERMIX_HOSTS_CONFIG la calea unui fișier de gazde pentru a utiliza acest plugin.",
+    "file": "Fișier: {{path}}",
+    "hosts_one": "{{count}} gazdă din fișier",
+    "hosts_few": "{{count}} gazde din fișier",
+    "hosts_other": "{{count}} gazde din fișier",
+    "strict": "Gazdele pot fi adăugate doar în fișier",
+    "lastLoaded": "Ultima aplicare {{date}}",
+    "neverLoaded": "Nu a fost încă aplicat",
+    "errorsTitle": "Ultima modificare nu a fost aplicată:",
+    "applyErrorsTitle": "Aceste gazde nu au putut fi scrise:",
+    "reload": "Reîncarcă acum",
+    "reloading": "Se reîncarcă...",
+    "applied": "Fișierul de gazde a fost aplicat",
+    "notApplied": "Fișierul de gazde are probleme și nu a fost aplicat"
+  }
+}

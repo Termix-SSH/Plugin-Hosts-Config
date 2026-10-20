@@ -1,0 +1,27 @@
+{
+  "plugin": {
+    "name": "Konfigurasi Host",
+    "description": "Simpan host, folder, dan berbagi dalam file YAML atau JSON. Termix memuatnya sebagai host hanya-baca dan memuat ulang saat file berubah."
+  },
+  "permissions": {
+    "manage": {
+      "title": "Kelola file host",
+      "description": "Lihat status file host dan muat ulang."
+    }
+  },
+  "status": {
+    "title": "File host",
+    "notSet": "Atur TERMIX_HOSTS_CONFIG ke jalur file host untuk menggunakan plugin ini.",
+    "file": "File: {{path}}",
+    "hosts_other": "{{count}} host dari file",
+    "strict": "Host hanya dapat ditambahkan di dalam file",
+    "lastLoaded": "Terakhir diterapkan {{date}}",
+    "neverLoaded": "Belum diterapkan",
+    "errorsTitle": "Perubahan terakhir tidak diterapkan:",
+    "applyErrorsTitle": "Host ini tidak dapat ditulis:",
+    "reload": "Muat ulang sekarang",
+    "reloading": "Memuat ulang...",
+    "applied": "File host diterapkan",
+    "notApplied": "File host bermasalah dan tidak diterapkan"
+  }
+}

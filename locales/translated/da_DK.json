@@ -1,0 +1,28 @@
+{
+  "plugin": {
+    "name": "Hosts Config",
+    "description": "Gem værter, mapper og deling i en YAML- eller JSON-fil. Termix indlæser dem som skrivebeskyttede værter og genindlæser, når filen ændres."
+  },
+  "permissions": {
+    "manage": {
+      "title": "Administrer værterfilen",
+      "description": "Se status for værterfilen og genindlæs den."
+    }
+  },
+  "status": {
+    "title": "Værterfil",
+    "notSet": "Sæt TERMIX_HOSTS_CONFIG til stien til en værterfil for at bruge denne plugin.",
+    "file": "Fil: {{path}}",
+    "hosts_one": "{{count}} vært fra filen",
+    "hosts_other": "{{count}} værter fra filen",
+    "strict": "Værter kan kun tilføjes i filen",
+    "lastLoaded": "Sidst anvendt {{date}}",
+    "neverLoaded": "Ikke anvendt endnu",
+    "errorsTitle": "Den sidste ændring blev ikke anvendt:",
+    "applyErrorsTitle": "Disse værter kunne ikke skrives:",
+    "reload": "Genindlæs nu",
+    "reloading": "Genindlæser...",
+    "applied": "Værterfil anvendt",
+    "notApplied": "Værterfilen har problemer og blev ikke anvendt"
+  }
+}

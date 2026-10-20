@@ -1,0 +1,29 @@
+{
+  "plugin": {
+    "name": "Konfiguracija hostova",
+    "description": "Čuvajte hostove, mape i postavke dijeljenja u YAML ili JSON datoteci. Termix ih učitava kao hostove samo za čitanje i ponovno učitava kada se datoteka promijeni."
+  },
+  "permissions": {
+    "manage": {
+      "title": "Upravljanje datotekom hostova",
+      "description": "Pregledajte status datoteke hostova i ponovno je učitajte."
+    }
+  },
+  "status": {
+    "title": "Datoteka hostova",
+    "notSet": "Postavite TERMIX_HOSTS_CONFIG na putanju do datoteke hostova za korištenje ovog dodatka.",
+    "file": "Datoteka: {{path}}",
+    "hosts_one": "{{count}} host iz datoteke",
+    "hosts_few": "{{count}} hosta iz datoteke",
+    "hosts_other": "{{count}} hostova iz datoteke",
+    "strict": "Hostovi se mogu dodati samo u datoteci",
+    "lastLoaded": "Zadnja primjena {{date}}",
+    "neverLoaded": "Još nije primijenjeno",
+    "errorsTitle": "Zadnja promjena nije primijenjena:",
+    "applyErrorsTitle": "Ovi hostovi nisu mogli biti zapisani:",
+    "reload": "Ponovno učitaj sada",
+    "reloading": "Ponovno učitavanje...",
+    "applied": "Datoteka hostova primijenjena",
+    "notApplied": "Datoteka hostova ima problema i nije primijenjena"
+  }
+}

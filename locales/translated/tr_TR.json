@@ -1,0 +1,28 @@
+{
+  "plugin": {
+    "name": "Hosts Config",
+    "description": "Sunucuları, klasörleri ve paylaşımı bir YAML veya JSON dosyasında tutun. Termix bunları salt okunur sunucular olarak yükler ve dosya değiştiğinde yeniden yükler."
+  },
+  "permissions": {
+    "manage": {
+      "title": "Sunucular dosyasını yönet",
+      "description": "Sunucular dosyasının durumunu görüntüleyin ve yeniden yükleyin."
+    }
+  },
+  "status": {
+    "title": "Sunucular dosyası",
+    "notSet": "Bu eklentiyi kullanmak için TERMIX_HOSTS_CONFIG'i bir sunucular dosyasının yoluna ayarlayın.",
+    "file": "Dosya: {{path}}",
+    "hosts_one": "Dosyadan {{count}} sunucu",
+    "hosts_other": "Dosyadan {{count}} sunucu",
+    "strict": "Sunucular yalnızca dosyada eklenebilir",
+    "lastLoaded": "Son uygulama {{date}}",
+    "neverLoaded": "Henüz uygulanmadı",
+    "errorsTitle": "Son değişiklik uygulanamadı:",
+    "applyErrorsTitle": "Bu ana bilgisayarlar yazılamadı:",
+    "reload": "Şimdi yeniden yükle",
+    "reloading": "Yeniden yükleniyor...",
+    "applied": "Ana bilgisayarlar dosyası uygulandı",
+    "notApplied": "Ana bilgisayarlar dosyasında sorunlar var ve uygulanamadı"
+  }
+}

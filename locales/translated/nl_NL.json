@@ -1,0 +1,28 @@
+{
+  "plugin": {
+    "name": "Hosts Config",
+    "description": "Bewaar hosts, mappen en gedeelde instellingen in een YAML- of JSON-bestand. Termix laadt deze als alleen-lezen hosts en herlaadt ze wanneer het bestand wijzigt."
+  },
+  "permissions": {
+    "manage": {
+      "title": "Het hosts-bestand beheren",
+      "description": "Bekijk de status van het hosts-bestand en laad het opnieuw."
+    }
+  },
+  "status": {
+    "title": "Hosts-bestand",
+    "notSet": "Stel TERMIX_HOSTS_CONFIG in op het pad van een hosts-bestand om deze plugin te gebruiken.",
+    "file": "Bestand: {{path}}",
+    "hosts_one": "{{count}} host uit het bestand",
+    "hosts_other": "{{count}} hosts uit het bestand",
+    "strict": "Hosts kunnen alleen via het bestand worden toegevoegd",
+    "lastLoaded": "Laatst toegepast op {{date}}",
+    "neverLoaded": "Nog niet toegepast",
+    "errorsTitle": "De laatste wijziging is niet toegepast:",
+    "applyErrorsTitle": "Deze hosts konden niet worden opgeslagen:",
+    "reload": "Nu herladen",
+    "reloading": "Herladen...",
+    "applied": "Hosts-bestand toegepast",
+    "notApplied": "Het hosts-bestand bevat problemen en is niet toegepast"
+  }
+}

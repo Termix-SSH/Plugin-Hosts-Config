@@ -1,0 +1,28 @@
+{
+  "plugin": {
+    "name": "Hosts-konfig",
+    "description": "Bewaar hosts, vouers en deelinstellings in 'n YAML- of JSON-lêer. Termix laai hulle as slegs-lees hosts en herlaai wanneer die lêer verander."
+  },
+  "permissions": {
+    "manage": {
+      "title": "Bestuur die hosts-lêer",
+      "description": "Sien die status van die hosts-lêer en herlaai dit."
+    }
+  },
+  "status": {
+    "title": "Hosts-lêer",
+    "notSet": "Stel TERMIX_HOSTS_CONFIG na die pad van 'n hosts-lêer om hierdie invoegprogram te gebruik.",
+    "file": "Lêer: {{path}}",
+    "hosts_one": "{{count}} host uit die lêer",
+    "hosts_other": "{{count}} hosts uit die lêer",
+    "strict": "Hosts kan slegs in die lêer bygevoeg word",
+    "lastLoaded": "Laas toegepas {{date}}",
+    "neverLoaded": "Nog nie toegepas nie",
+    "errorsTitle": "Die laaste verandering is nie toegepas nie:",
+    "applyErrorsTitle": "Hierdie hosts kon nie geskryf word nie:",
+    "reload": "Herlaai nou",
+    "reloading": "Herlaai...",
+    "applied": "Hosts-lêer toegepas",
+    "notApplied": "Die hosts-lêer het probleme en is nie toegepas nie"
+  }
+}

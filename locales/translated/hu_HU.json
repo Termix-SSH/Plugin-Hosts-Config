@@ -1,0 +1,28 @@
+{
+  "plugin": {
+    "name": "Hosts Config",
+    "description": "Tartsa a hosztokat, mappákat és megosztásokat egy YAML vagy JSON fájlban. A Termix csak olvasható hosztokként tölti be őket, és újratölti, amikor a fájl megváltozik."
+  },
+  "permissions": {
+    "manage": {
+      "title": "A hosztok fájljának kezelése",
+      "description": "A hosztok fájljának állapotának megtekintése és újratöltése."
+    }
+  },
+  "status": {
+    "title": "Hosztok fájlja",
+    "notSet": "Állítsa be a TERMIX_HOSTS_CONFIG értéket egy hosztok fájljának elérési útjára, hogy használhassa ezt a bővítményt.",
+    "file": "Fájl: {{path}}",
+    "hosts_one": "{{count}} hoszt a fájlból",
+    "hosts_other": "{{count}} hoszt a fájlból",
+    "strict": "A hosztokat csak a fájlban lehet hozzáadni",
+    "lastLoaded": "Utoljára alkalmazva: {{date}}",
+    "neverLoaded": "Még nem alkalmazva",
+    "errorsTitle": "Az utolsó változtatás nem került alkalmazásra:",
+    "applyErrorsTitle": "Ezeket a hosztokat nem lehetett írni:",
+    "reload": "Újratöltés most",
+    "reloading": "Újratöltés...",
+    "applied": "A hosztok fájlja alkalmazva",
+    "notApplied": "A hosztok fájlja hibás, és nem került alkalmazásra"
+  }
+}

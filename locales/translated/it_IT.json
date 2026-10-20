@@ -1,0 +1,29 @@
+{
+  "plugin": {
+    "name": "Configurazione host",
+    "description": "Mantieni host, cartelle e condivisioni in un file YAML o JSON. Termix li carica come host di sola lettura e li ricarica quando il file viene modificato."
+  },
+  "permissions": {
+    "manage": {
+      "title": "Gestisci il file degli host",
+      "description": "Visualizza lo stato del file degli host e ricaricalo."
+    }
+  },
+  "status": {
+    "title": "File degli host",
+    "notSet": "Imposta TERMIX_HOSTS_CONFIG sul percorso di un file degli host per utilizzare questo plugin.",
+    "file": "File: {{path}}",
+    "hosts_one": "{{count}} host dal file",
+    "hosts_many": "{{count}} host dal file",
+    "hosts_other": "{{count}} host dal file",
+    "strict": "Gli host possono essere aggiunti solo nel file",
+    "lastLoaded": "Ultima applicazione {{date}}",
+    "neverLoaded": "Non ancora applicato",
+    "errorsTitle": "L'ultima modifica non è stata applicata:",
+    "applyErrorsTitle": "Questi host non possono essere scritti:",
+    "reload": "Ricarica ora",
+    "reloading": "Ricaricamento...",
+    "applied": "File degli host applicato",
+    "notApplied": "Il file degli host presenta problemi e non è stato applicato"
+  }
+}

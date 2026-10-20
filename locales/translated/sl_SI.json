@@ -1,0 +1,30 @@
+{
+  "plugin": {
+    "name": "Konfiguracija gostiteljev",
+    "description": "Shranjujte gostitelje, mape in nastavitve za deljenje v datoteki YAML ali JSON. Termix jih naloži kot gostitelje za branje in ponovno naloži, ko se datoteka spremeni."
+  },
+  "permissions": {
+    "manage": {
+      "title": "Upravljanje datoteke gostiteljev",
+      "description": "Prikaz stanja datoteke gostiteljev in ponovno nalaganje."
+    }
+  },
+  "status": {
+    "title": "Datoteka gostiteljev",
+    "notSet": "Nastavite TERMIX_HOSTS_CONFIG na pot do datoteke gostiteljev, da uporabite to vtičnico.",
+    "file": "Datoteka: {{path}}",
+    "hosts_one": "{{count}} gostitelj iz datoteke",
+    "hosts_two": "{{count}} gostitelja iz datoteke",
+    "hosts_few": "{{count}} gostitelji iz datoteke",
+    "hosts_other": "{{count}} gostiteljev iz datoteke",
+    "strict": "Gostitelje lahko dodate le v datoteko",
+    "lastLoaded": "Zadnjič uporabljeno {{date}}",
+    "neverLoaded": "Še ni bilo uporabljeno",
+    "errorsTitle": "Zadnja sprememba ni bila uporabljena:",
+    "applyErrorsTitle": "Teh gostiteljev ni bilo mogoče zapisati:",
+    "reload": "Ponovno naloži zdaj",
+    "reloading": "Ponovno nalaganje...",
+    "applied": "Datoteka gostiteljev je bila uporabljena",
+    "notApplied": "Datoteka gostiteljev ima težave in ni bila uporabljena"
+  }
+}

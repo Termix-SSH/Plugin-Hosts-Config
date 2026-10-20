@@ -1,0 +1,30 @@
+{
+  "plugin": {
+    "name": "Konfiguracja hostów",
+    "description": "Przechowuj hosty, foldery i ustawienia udostępniania w pliku YAML lub JSON. Termix ładuje je jako hosty tylko do odczytu i przeładowuje po zmianie pliku."
+  },
+  "permissions": {
+    "manage": {
+      "title": "Zarządzaj plikiem hostów",
+      "description": "Sprawdzaj status pliku hostów i przeładowuj go."
+    }
+  },
+  "status": {
+    "title": "Plik hostów",
+    "notSet": "Ustaw zmienną TERMIX_HOSTS_CONFIG na ścieżkę do pliku hostów, aby korzystać z tego wtyczki.",
+    "file": "Plik: {{path}}",
+    "hosts_one": "{{count}} host z pliku",
+    "hosts_few": "{{count}} hosty z pliku",
+    "hosts_many": "{{count}} hostów z pliku",
+    "hosts_other": "{{count}} hostów z pliku",
+    "strict": "Hosty mogą być dodawane tylko w pliku",
+    "lastLoaded": "Ostatnio zastosowano {{date}}",
+    "neverLoaded": "Nie zastosowano jeszcze",
+    "errorsTitle": "Ostatnia zmiana nie została zastosowana:",
+    "applyErrorsTitle": "Nie udało się zapisać tych hostów:",
+    "reload": "Przeładuj teraz",
+    "reloading": "Przeładowywanie...",
+    "applied": "Plik hostów zastosowany",
+    "notApplied": "Plik hostów zawiera błędy i nie został zastosowany"
+  }
+}

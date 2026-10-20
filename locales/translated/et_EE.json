@@ -1,0 +1,28 @@
+{
+  "plugin": {
+    "name": "Hostide seaded",
+    "description": "Hoidke hoste, kaustu ja jagamisseadeid YAML- või JSON-failis. Termix laeb need ainult lugemiseks mõeldud hostidena ja laeb uuesti, kui fail muutub."
+  },
+  "permissions": {
+    "manage": {
+      "title": "Hostide faili haldamine",
+      "description": "Vaata hostide faili olekut ja lae see uuesti."
+    }
+  },
+  "status": {
+    "title": "Hostide fail",
+    "notSet": "Määra TERMIX_HOSTS_CONFIG hostide faili asukohaks, et seda pistprogrammi kasutada.",
+    "file": "Fail: {{path}}",
+    "hosts_one": "{{count}} host failist",
+    "hosts_other": "{{count}} hosti failist",
+    "strict": "Hoste saab lisada ainult faili kaudu",
+    "lastLoaded": "Viimati rakendatud {{date}}",
+    "neverLoaded": "Pole veel rakendatud",
+    "errorsTitle": "Viimast muudatust ei rakendatud:",
+    "applyErrorsTitle": "Neid hoste ei õnnestunud kirjutada:",
+    "reload": "Laadi uuesti",
+    "reloading": "Laadin uuesti...",
+    "applied": "Hostide fail rakendatud",
+    "notApplied": "Hostide failil on probleeme ja seda ei rakendatud"
+  }
+}

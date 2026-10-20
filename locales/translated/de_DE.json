@@ -1,0 +1,28 @@
+{
+  "plugin": {
+    "name": "Hosts-Konfiguration",
+    "description": "Speichern Sie Hosts, Ordner und Freigaben in einer YAML- oder JSON-Datei. Termix lädt diese als schreibgeschützte Hosts und aktualisiert sie automatisch, wenn sich die Datei ändert."
+  },
+  "permissions": {
+    "manage": {
+      "title": "Hosts-Datei verwalten",
+      "description": "Status der Hosts-Datei anzeigen und neu laden."
+    }
+  },
+  "status": {
+    "title": "Hosts-Datei",
+    "notSet": "Legen Sie TERMIX_HOSTS_CONFIG auf den Pfad einer Hosts-Datei fest, um dieses Plugin zu verwenden.",
+    "file": "Datei: {{path}}",
+    "hosts_one": "{{count}} Host aus der Datei",
+    "hosts_other": "{{count}} Hosts aus der Datei",
+    "strict": "Hosts können nur über die Datei hinzugefügt werden",
+    "lastLoaded": "Zuletzt angewendet: {{date}}",
+    "neverLoaded": "Noch nicht angewendet",
+    "errorsTitle": "Die letzte Änderung wurde nicht angewendet:",
+    "applyErrorsTitle": "Diese Hosts konnten nicht geschrieben werden:",
+    "reload": "Jetzt neu laden",
+    "reloading": "Wird neu geladen...",
+    "applied": "Hosts-Datei angewendet",
+    "notApplied": "Die Hosts-Datei enthält Probleme und wurde nicht angewendet"
+  }
+}

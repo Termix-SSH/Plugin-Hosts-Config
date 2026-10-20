@@ -1,0 +1,27 @@
+{
+  "plugin": {
+    "name": "Hosts Config",
+    "description": "Lưu trữ hosts, thư mục và chia sẻ trong một tệp YAML hoặc JSON. Termix sẽ tải chúng dưới dạng hosts chỉ đọc và tự động tải lại khi tệp thay đổi."
+  },
+  "permissions": {
+    "manage": {
+      "title": "Quản lý tệp hosts",
+      "description": "Xem trạng thái tệp hosts và tải lại."
+    }
+  },
+  "status": {
+    "title": "Tệp hosts",
+    "notSet": "Đặt TERMIX_HOSTS_CONFIG thành đường dẫn của một tệp hosts để sử dụng plugin này.",
+    "file": "Tệp: {{path}}",
+    "hosts_other": "{{count}} hosts từ tệp",
+    "strict": "Hosts chỉ có thể được thêm trong tệp",
+    "lastLoaded": "Áp dụng lần cuối {{date}}",
+    "neverLoaded": "Chưa áp dụng",
+    "errorsTitle": "Thay đổi gần nhất không được áp dụng:",
+    "applyErrorsTitle": "Không thể ghi các hosts sau:",
+    "reload": "Tải lại ngay",
+    "reloading": "Đang tải lại...",
+    "applied": "Đã áp dụng tệp hosts",
+    "notApplied": "Tệp hosts có lỗi và không được áp dụng"
+  }
+}

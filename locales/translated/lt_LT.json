@@ -1,0 +1,30 @@
+{
+  "plugin": {
+    "name": "Hosts Config",
+    "description": "Išsaugokite serverius, aplankus ir bendrinimo nustatymus YAML arba JSON faile. Termix juos įkelia kaip tik skaitymo serverius ir perkrauna, kai failas pasikeičia."
+  },
+  "permissions": {
+    "manage": {
+      "title": "Tvarkyti serverių failą",
+      "description": "Peržiūrėti serverių failo būseną ir jį perkrauti."
+    }
+  },
+  "status": {
+    "title": "Serverių failas",
+    "notSet": "Nustatykite TERMIX_HOSTS_CONFIG kintamąjį į serverių failo kelią, kad naudotumėte šį priedą.",
+    "file": "Failas: {{path}}",
+    "hosts_one": "{{count}} serveris iš failo",
+    "hosts_few": "{{count}} serveriai iš failo",
+    "hosts_many": "{{count}} serverių iš failo",
+    "hosts_other": "{{count}} serverių iš failo",
+    "strict": "Serverius galima pridėti tik per failą",
+    "lastLoaded": "Paskutinį kartą taikyta {{date}}",
+    "neverLoaded": "Dar nebuvo taikyta",
+    "errorsTitle": "Paskutinis pakeitimas nebuvo taikytas:",
+    "applyErrorsTitle": "Šių serverių nepavyko įrašyti:",
+    "reload": "Perkrauti dabar",
+    "reloading": "Perkraunama...",
+    "applied": "Serverių failas taikytas",
+    "notApplied": "Serverių faile yra problemų, todėl jis nebuvo taikytas"
+  }
+}

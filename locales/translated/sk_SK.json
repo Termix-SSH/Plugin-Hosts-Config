@@ -1,0 +1,30 @@
+{
+  "plugin": {
+    "name": "Konfigurácia hostiteľov",
+    "description": "Ukladajte hostiteľov, priečinky a zdieľanie v súbore YAML alebo JSON. Termix ich načíta ako hostiteľov len na čítanie a znova načíta pri zmene súboru."
+  },
+  "permissions": {
+    "manage": {
+      "title": "Spravovať súbor hostiteľov",
+      "description": "Zobraziť stav súboru hostiteľov a znova ho načítať."
+    }
+  },
+  "status": {
+    "title": "Súbor hostiteľov",
+    "notSet": "Nastavte TERMIX_HOSTS_CONFIG na cestu k súboru hostiteľov pre použitie tohto pluginu.",
+    "file": "Súbor: {{path}}",
+    "hosts_one": "{{count}} hostiteľ zo súboru",
+    "hosts_few": "{{count}} hostitelia zo súboru",
+    "hosts_many": "{{count}} hostiteľov zo súboru",
+    "hosts_other": "{{count}} hostiteľov zo súboru",
+    "strict": "Hostitelia sa môžu pridávať iba v súbore",
+    "lastLoaded": "Naposledy aplikované {{date}}",
+    "neverLoaded": "Zatiaľ neaplikované",
+    "errorsTitle": "Posledná zmena sa neaplikovala:",
+    "applyErrorsTitle": "Tieto hostiteľov sa nepodarilo zapísať:",
+    "reload": "Znova načítať",
+    "reloading": "Načítava sa...",
+    "applied": "Súbor hostiteľov bol aplikovaný",
+    "notApplied": "Súbor hostiteľov má problémy a neaplikoval sa"
+  }
+}

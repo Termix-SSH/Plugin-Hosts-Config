@@ -1,0 +1,28 @@
+{
+  "plugin": {
+    "name": "Hosts Config",
+    "description": "Hold verter, mapper og deling i en YAML- eller JSON-fil. Termix laster dem som skrivebeskyttede verter og laster inn på nytt når filen endres."
+  },
+  "permissions": {
+    "manage": {
+      "title": "Administrer vertsfilen",
+      "description": "Se status for vertsfilen og last den inn på nytt."
+    }
+  },
+  "status": {
+    "title": "Vertsfil",
+    "notSet": "Angi TERMIX_HOSTS_CONFIG til stien til en vertsfil for å bruke denne programtillegget.",
+    "file": "Fil: {{path}}",
+    "hosts_one": "{{count}} vert fra filen",
+    "hosts_other": "{{count}} verter fra filen",
+    "strict": "Verter kan kun legges til i filen",
+    "lastLoaded": "Sist brukt {{date}}",
+    "neverLoaded": "Ikke brukt ennå",
+    "errorsTitle": "Den siste endringen ble ikke brukt:",
+    "applyErrorsTitle": "Disse vertene kunne ikke skrives:",
+    "reload": "Last inn på nytt nå",
+    "reloading": "Laster inn på nytt...",
+    "applied": "Vertsfilen er brukt",
+    "notApplied": "Vertsfilen har problemer og ble ikke brukt"
+  }
+}
