@@ -24,5 +24,21 @@
     "reloading": "Laddar om...",
     "applied": "Värdarfilen har tillämpats",
     "notApplied": "Värdarfilen har problem och kunde inte tillämpas"
+  },
+  "operations": {
+    "status": {
+      "title": "Värdarfil"
+    },
+    "reload": {
+      "title": "Ladda om värdarfilen"
+    }
+  },
+  "settings": {
+    "admin": {
+      "alertOnError": {
+        "label": "Visa varning när värdarfilen har problem",
+        "description": "Skicka en varning till administratörer när värdarfilen inte kan läsas eller när vissa värdar inte har tillämpats."
+      }
+    }
   }
 }

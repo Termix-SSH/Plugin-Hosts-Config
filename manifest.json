@@ -1,7 +1,7 @@
 {
   "id": "hosts-config",
   "name": "Hosts Config",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Keep hosts, folders and sharing in a YAML or JSON file. Termix loads them as read only hosts and reloads when the file changes.",
   "author": {
     "name": "Termix"
@@ -28,7 +28,7 @@
     }
   ],
   "engine": {
-    "termix": ">=26.10.3",
+    "termix": ">=26.11.1-0",
     "api": "^1.6"
   },
   "capabilities": [
@@ -39,7 +39,9 @@
     "credentials:use",
     "users:impersonate",
     "network:serve",
-    "ui:surface"
+    "ui:surface",
+    "notify:send",
+    "operations:provide"
   ],
   "contributes": {
     "permissions": [
@@ -56,6 +58,56 @@
           "key": "status",
           "type": "custom",
           "component": "status"
+        },
+        {
+          "key": "alertOnError",
+          "type": "boolean",
+          "labelKey": "settings.admin.alertOnError.label",
+          "descriptionKey": "settings.admin.alertOnError.description",
+          "default": true
+        }
+      ]
+    },
+    "operations": {
+      "actions": [
+        {
+          "id": "hosts-config.status",
+          "titleKey": "operations.status.title",
+          "icon": "FileCog",
+          "scope": "server",
+          "risk": "read",
+          "permission": "manage",
+          "surfaces": {
+            "assistant": true,
+            "mcp": true,
+            "palette": false
+          }
+        },
+        {
+          "id": "hosts-config.reload",
+          "titleKey": "operations.reload.title",
+          "icon": "RefreshCw",
+          "scope": "server",
+          "risk": "change",
+          "permission": "manage",
+          "dryRun": "describe",
+          "idempotent": true,
+          "exclusive": true,
+          "surfaces": {
+            "assistant": true,
+            "mcp": true
+          }
+        }
+      ],
+      "signals": [
+        {
+          "id": "hosts-config.file",
+          "titleKey": "operations.status.title",
+          "read": "hosts-config.status",
+          "scope": "server",
+          "kind": "status",
+          "refreshSec": 300,
+          "fix": "hosts-config.reload"
         }
       ]
     }

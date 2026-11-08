@@ -24,5 +24,21 @@
     "reloading": "Yeniden yükleniyor...",
     "applied": "Ana bilgisayarlar dosyası uygulandı",
     "notApplied": "Ana bilgisayarlar dosyasında sorunlar var ve uygulanamadı"
+  },
+  "operations": {
+    "status": {
+      "title": "Hosts dosyası"
+    },
+    "reload": {
+      "title": "Hosts dosyasını yeniden yükle"
+    }
+  },
+  "settings": {
+    "admin": {
+      "alertOnError": {
+        "label": "Hosts dosyasında sorun olduğunda uyar",
+        "description": "Hosts dosyası okunamadığında veya bazı ana bilgisayarlar uygulanamadığında yöneticilere bir uyarı gönder."
+      }
+    }
   }
 }

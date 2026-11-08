@@ -26,5 +26,21 @@
     "reloading": "Načítání...",
     "applied": "Soubor hostitelů byl aplikován",
     "notApplied": "Soubor hostitelů má problémy a nebyl aplikován"
+  },
+  "operations": {
+    "status": {
+      "title": "Soubor hosts"
+    },
+    "reload": {
+      "title": "Obnovit soubor hosts"
+    }
+  },
+  "settings": {
+    "admin": {
+      "alertOnError": {
+        "label": "Upozornit při problémech se souborem hosts",
+        "description": "Poslat administrátorům upozornění, pokud nelze soubor hosts přečíst nebo pokud se některé hosty nepoužily."
+      }
+    }
   }
 }

@@ -25,5 +25,21 @@
     "reloading": "Recarregando...",
     "applied": "Arquivo de hosts aplicado",
     "notApplied": "O arquivo de hosts possui problemas e não foi aplicado"
+  },
+  "operations": {
+    "status": {
+      "title": "Arquivo de hosts"
+    },
+    "reload": {
+      "title": "Recarregar arquivo de hosts"
+    }
+  },
+  "settings": {
+    "admin": {
+      "alertOnError": {
+        "label": "Alertar quando o arquivo de hosts tiver problemas",
+        "description": "Enviar um alerta aos administradores quando o arquivo de hosts não puder ser lido ou quando alguns hosts não forem aplicados."
+      }
+    }
   }
 }

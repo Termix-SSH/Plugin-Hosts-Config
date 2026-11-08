@@ -24,5 +24,21 @@
     "reloading": "Laster inn på nytt...",
     "applied": "Vertsfilen er brukt",
     "notApplied": "Vertsfilen har problemer og ble ikke brukt"
+  },
+  "operations": {
+    "status": {
+      "title": "Vertsfiler"
+    },
+    "reload": {
+      "title": "Last inn vertsfilen på nytt"
+    }
+  },
+  "settings": {
+    "admin": {
+      "alertOnError": {
+        "label": "Varsle når vertsfilen har problemer",
+        "description": "Send administratorene et varsel når vertsfilen ikke kan leses eller når noen verter ikke blir brukt."
+      }
+    }
   }
 }

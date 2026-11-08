@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.1.0
+
+### Added
+
+- Reload the hosts file through Termix actions and see whether it applied as a status tile
+- An alert to admins when the hosts file cannot be read or some hosts are not applied, with a setting to turn it off
+
+### Changed
+
+- Needs Termix 26.11.1 or newer
+
 ## 1.0.0
 
 ### Added

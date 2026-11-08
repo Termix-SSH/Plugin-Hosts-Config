@@ -39,7 +39,10 @@ const nodeDeps: LoaderDeps = {
   readFile: (file) => fs.readFileSync(file, "utf8"),
 };
 
-type Ctx = Pick<PluginContext, "hosts" | "asUser" | "credentials" | "log">;
+type Ctx = Pick<
+  PluginContext,
+  "hosts" | "asUser" | "credentials" | "log" | "settings" | "notify"
+>;
 
 export function createLoader(
   ctx: Ctx,
@@ -49,6 +52,7 @@ export function createLoader(
   const file = deps.env(ENV_VAR)?.trim() || null;
   const locked = new Map<number, string>();
   let appliedHash: string | null = null;
+  let lastAlerted = "";
   let queue: Promise<unknown> = Promise.resolve();
   const status: LoaderStatus = {
     enabled: !!file,
@@ -100,11 +104,35 @@ export function createLoader(
     };
   }
 
+  /** One alert per distinct set of problems, none when it applies cleanly. */
+  async function alertProblems(problems: string[]): Promise<void> {
+    const key = problems.join("|");
+    if (key === lastAlerted) return;
+    lastAlerted = key;
+    if (problems.length === 0) return;
+    try {
+      if ((await ctx.settings.get<boolean>("alertOnError")) === false) return;
+      await ctx.notify.send({
+        title: "The hosts file was not fully applied",
+        body: problems.slice(0, 5).join("; "),
+        severity: "warning",
+        category: "hosts-config.apply_error",
+        audience: "admins",
+        dedupeKey: "hosts-config:apply-error",
+      });
+    } catch (error) {
+      ctx.log.warn(
+        `Could not send a hosts file alert: ${error instanceof Error ? error.message : String(error)}`,
+      );
+    }
+  }
+
   async function run(force: boolean): Promise<LoaderStatus> {
     if (!file) return status;
     status.lastAttemptAt = new Date().toISOString();
     const fail = (errors: string[]) => {
       status.errors = errors;
+      void alertProblems(errors);
       ctx.log.warn(
         `Hosts file ${file} was not applied: ${errors.length} problem(s). ${errors.slice(0, 5).join("; ")}`,
       );
@@ -158,6 +186,7 @@ export function createLoader(
     for (const warning of parsed.warnings) ctx.log.warn(warning);
     for (const error of report.errors)
       ctx.log.warn(`Host not applied: ${error}`);
+    await alertProblems(report.errors);
     return status;
   }
 

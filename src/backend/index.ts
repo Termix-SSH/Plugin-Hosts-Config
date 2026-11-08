@@ -4,6 +4,7 @@ import { managedHosts } from "./tables.js";
 import { createMapStore } from "./store.js";
 import { createLoader, watchHostsFile, type LoaderDeps } from "./loader.js";
 import { registerRoutes } from "./routes.js";
+import { registerOperations } from "./operations.js";
 
 /** Let other plugins start first, so their host settings validate. */
 export const FIRST_LOAD_DELAY_MS = 5000;
@@ -12,6 +13,7 @@ export async function activateWith(ctx: PluginContext, deps?: LoaderDeps) {
   const table = await ctx.db.define(managedHosts);
   const loader = createLoader(ctx, createMapStore(ctx, table), deps);
   registerRoutes(ctx, ctx.http.router<Router>(), loader);
+  registerOperations(ctx, loader);
 
   const file = loader.status().path;
   if (!file) {

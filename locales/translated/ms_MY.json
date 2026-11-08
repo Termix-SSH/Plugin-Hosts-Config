@@ -23,5 +23,21 @@
     "reloading": "Memuat semula...",
     "applied": "Fail host diterapkan",
     "notApplied": "Fail host mempunyai masalah dan tidak diterapkan"
+  },
+  "operations": {
+    "status": {
+      "title": "Fail hos"
+    },
+    "reload": {
+      "title": "Muat semula fail hos"
+    }
+  },
+  "settings": {
+    "admin": {
+      "alertOnError": {
+        "label": "Amaran apabila fail hos mempunyai masalah",
+        "description": "Hantar amaran kepada pentadbir apabila fail hos tidak dapat dibaca atau beberapa hos tidak dapat digunakan."
+      }
+    }
   }
 }

@@ -23,5 +23,21 @@
     "reloading": "Memuat ulang...",
     "applied": "File host diterapkan",
     "notApplied": "File host bermasalah dan tidak diterapkan"
+  },
+  "operations": {
+    "status": {
+      "title": "File hosts"
+    },
+    "reload": {
+      "title": "Muat ulang file hosts"
+    }
+  },
+  "settings": {
+    "admin": {
+      "alertOnError": {
+        "label": "Peringatkan saat file hosts bermasalah",
+        "description": "Kirim peringatan ke admin saat file hosts tidak dapat dibaca atau beberapa host tidak diterapkan."
+      }
+    }
   }
 }

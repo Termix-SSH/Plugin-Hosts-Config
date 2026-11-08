@@ -23,5 +23,21 @@
     "reloading": "다시 로드 중...",
     "applied": "호스트 파일이 적용되었습니다",
     "notApplied": "호스트 파일에 문제가 있어 적용되지 않았습니다"
+  },
+  "operations": {
+    "status": {
+      "title": "호스트 파일"
+    },
+    "reload": {
+      "title": "호스트 파일 새로고침"
+    }
+  },
+  "settings": {
+    "admin": {
+      "alertOnError": {
+        "label": "호스트 파일 오류 시 알림",
+        "description": "호스트 파일을 읽을 수 없거나 일부 호스트가 적용되지 않을 때 관리자에게 알림을 보냅니다."
+      }
+    }
   }
 }

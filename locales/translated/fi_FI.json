@@ -24,5 +24,21 @@
     "reloading": "Ladataan uudelleen...",
     "applied": "Isäntätiedosto sovellettu",
     "notApplied": "Isäntätiedostossa on ongelmia, eikä sitä voitu soveltaa"
+  },
+  "operations": {
+    "status": {
+      "title": "Isäntätiedosto"
+    },
+    "reload": {
+      "title": "Lataa isäntätiedosto uudelleen"
+    }
+  },
+  "settings": {
+    "admin": {
+      "alertOnError": {
+        "label": "Ilmoita, jos isäntätiedostossa on ongelmia",
+        "description": "Lähetä ylläpitäjille ilmoitus, jos isäntätiedostoa ei voi lukea tai jos joitakin isäntiä ei voida soveltaa."
+      }
+    }
   }
 }

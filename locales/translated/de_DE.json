@@ -24,5 +24,21 @@
     "reloading": "Wird neu geladen...",
     "applied": "Hosts-Datei angewendet",
     "notApplied": "Die Hosts-Datei enthält Probleme und wurde nicht angewendet"
+  },
+  "operations": {
+    "status": {
+      "title": "Hosts-Datei"
+    },
+    "reload": {
+      "title": "Hosts-Datei neu laden"
+    }
+  },
+  "settings": {
+    "admin": {
+      "alertOnError": {
+        "label": "Benachrichtigung bei Problemen mit der Hosts-Datei",
+        "description": "Sende Administratoren eine Benachrichtigung, wenn die Hosts-Datei nicht gelesen werden kann oder einige Hosts nicht angewendet wurden."
+      }
+    }
   }
 }

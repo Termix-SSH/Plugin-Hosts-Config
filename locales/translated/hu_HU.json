@@ -24,5 +24,21 @@
     "reloading": "Újratöltés...",
     "applied": "A hosztok fájlja alkalmazva",
     "notApplied": "A hosztok fájlja hibás, és nem került alkalmazásra"
+  },
+  "operations": {
+    "status": {
+      "title": "Hosts fájl"
+    },
+    "reload": {
+      "title": "Hosts fájl újratöltése"
+    }
+  },
+  "settings": {
+    "admin": {
+      "alertOnError": {
+        "label": "Riasztás, ha a hosts fájlban probléma van",
+        "description": "Küldjön riasztást az adminisztrátoroknak, ha a hosts fájl nem olvasható, vagy egyes hostok nem kerültek alkalmazásra."
+      }
+    }
   }
 }

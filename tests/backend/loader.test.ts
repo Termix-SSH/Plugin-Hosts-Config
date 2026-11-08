@@ -168,4 +168,17 @@ hosts:
     await l.load(true);
     expect(store.rows.get("bastion")!.hostId).not.toBe(oldId);
   });
+
+  it("alerts admins once when the file has problems", async () => {
+    files["/c/hosts.yaml"] = "hosts: [";
+    const l = loader();
+    await l.load();
+    await l.load(true);
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    const sent = fake.notifications.filter(
+      (n) => n.notification.category === "hosts-config.apply_error",
+    );
+    expect(sent).toHaveLength(1);
+    expect(sent[0].notification.audience).toBe("admins");
+  });
 });

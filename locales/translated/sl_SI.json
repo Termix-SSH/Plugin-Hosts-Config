@@ -26,5 +26,21 @@
     "reloading": "Ponovno nalaganje...",
     "applied": "Datoteka gostiteljev je bila uporabljena",
     "notApplied": "Datoteka gostiteljev ima težave in ni bila uporabljena"
+  },
+  "operations": {
+    "status": {
+      "title": "Datoteka gostiteljev"
+    },
+    "reload": {
+      "title": "Osveži datoteko gostiteljev"
+    }
+  },
+  "settings": {
+    "admin": {
+      "alertOnError": {
+        "label": "Opozori, ko datoteka gostiteljev vsebuje težave",
+        "description": "Pošljite skrbnikom opozorilo, ko datoteke gostiteljev ni mogoče prebrati ali ko nekateri gostitelji niso uporabljeni."
+      }
+    }
   }
 }

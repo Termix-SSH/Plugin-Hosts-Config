@@ -24,5 +24,21 @@
     "reloading": "Laadin uuesti...",
     "applied": "Hostide fail rakendatud",
     "notApplied": "Hostide failil on probleeme ja seda ei rakendatud"
+  },
+  "operations": {
+    "status": {
+      "title": "Hostide fail"
+    },
+    "reload": {
+      "title": "Laadi hostide fail uuesti"
+    }
+  },
+  "settings": {
+    "admin": {
+      "alertOnError": {
+        "label": "Teavita, kui hostide failis on probleeme",
+        "description": "Saada administraatoritele teavitus, kui hostide faili ei saa lugeda või mõnda hosti ei rakendata."
+      }
+    }
   }
 }

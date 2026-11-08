@@ -15,5 +15,9 @@
   "status.reload": "dfacbf4e04d9",
   "status.reloading": "43958d853205",
   "status.applied": "746b807eef81",
-  "status.notApplied": "75f24503501d"
+  "status.notApplied": "75f24503501d",
+  "operations.status.title": "347b1d50df0d",
+  "operations.reload.title": "438eabc9c353",
+  "settings.admin.alertOnError.label": "300c96b31587",
+  "settings.admin.alertOnError.description": "48fabc1b2e30"
 }

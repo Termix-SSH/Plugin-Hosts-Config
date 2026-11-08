@@ -33,6 +33,7 @@ Read the [docs](https://docs.termix.site/plugins/hosts-config) to set it up and 
 - Turn plugin features on or off per host
 - Reloads when the file changes, with clear errors when it can't apply
 - Strict mode so every host comes from the file
+- Reload the file through Termix actions, with an alert when it can't apply
 
 <br />
 

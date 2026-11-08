@@ -24,5 +24,21 @@
     "reloading": "Herladen...",
     "applied": "Hosts-bestand toegepast",
     "notApplied": "Het hosts-bestand bevat problemen en is niet toegepast"
+  },
+  "operations": {
+    "status": {
+      "title": "Hosts-bestand"
+    },
+    "reload": {
+      "title": "Hosts-bestand herladen"
+    }
+  },
+  "settings": {
+    "admin": {
+      "alertOnError": {
+        "label": "Waarschuwen bij problemen met het hosts-bestand",
+        "description": "Stuur een waarschuwing naar beheerders als het hosts-bestand niet kan worden gelezen of als sommige hosts niet zijn toegepast."
+      }
+    }
   }
 }

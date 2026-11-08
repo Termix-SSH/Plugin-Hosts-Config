@@ -25,5 +25,21 @@
     "reloading": "Rechargement...",
     "applied": "Fichier d'hôtes appliqué",
     "notApplied": "Le fichier d'hôtes présente des problèmes et n'a pas été appliqué"
+  },
+  "operations": {
+    "status": {
+      "title": "Fichier hosts"
+    },
+    "reload": {
+      "title": "Recharger le fichier hosts"
+    }
+  },
+  "settings": {
+    "admin": {
+      "alertOnError": {
+        "label": "Alerter en cas de problème avec le fichier hosts",
+        "description": "Envoyer une alerte aux administrateurs si le fichier hosts ne peut pas être lu ou si certains hôtes ne sont pas appliqués."
+      }
+    }
   }
 }

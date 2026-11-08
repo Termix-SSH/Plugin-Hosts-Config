@@ -23,5 +23,21 @@
     "reloading": "正在重新載入...",
     "applied": "已套用主機檔案",
     "notApplied": "主機檔案有問題，未套用"
+  },
+  "operations": {
+    "status": {
+      "title": "主機檔案"
+    },
+    "reload": {
+      "title": "重新載入主機檔案"
+    }
+  },
+  "settings": {
+    "admin": {
+      "alertOnError": {
+        "label": "主機檔案出現問題時顯示警示",
+        "description": "當無法讀取主機檔案，或部分主機設定未套用時，向管理員發送警示。"
+      }
+    }
   }
 }

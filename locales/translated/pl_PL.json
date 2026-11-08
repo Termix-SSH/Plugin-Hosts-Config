@@ -26,5 +26,21 @@
     "reloading": "Przeładowywanie...",
     "applied": "Plik hostów zastosowany",
     "notApplied": "Plik hostów zawiera błędy i nie został zastosowany"
+  },
+  "operations": {
+    "status": {
+      "title": "Plik hosts"
+    },
+    "reload": {
+      "title": "Przeładuj plik hosts"
+    }
+  },
+  "settings": {
+    "admin": {
+      "alertOnError": {
+        "label": "Powiadamiaj o problemach z plikiem hosts",
+        "description": "Wyślij powiadomienie do administratorów, gdy plik hosts nie może zostać odczytany lub gdy niektóre hosty nie zostały zastosowane."
+      }
+    }
   }
 }

@@ -25,5 +25,21 @@
     "reloading": "Ponovno učitavanje...",
     "applied": "Datoteka hostova primijenjena",
     "notApplied": "Datoteka hostova ima problema i nije primijenjena"
+  },
+  "operations": {
+    "status": {
+      "title": "Datoteka hosts"
+    },
+    "reload": {
+      "title": "Ponovno učitaj datoteku hosts"
+    }
+  },
+  "settings": {
+    "admin": {
+      "alertOnError": {
+        "label": "Upozori kada datoteka hosts ima problema",
+        "description": "Pošalji administratorima upozorenje kada se datoteka hosts ne može pročitati ili kada se neki hostovi ne primijene."
+      }
+    }
   }
 }

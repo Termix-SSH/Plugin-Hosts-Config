@@ -25,5 +25,21 @@
     "reloading": "Se reîncarcă...",
     "applied": "Fișierul de gazde a fost aplicat",
     "notApplied": "Fișierul de gazde are probleme și nu a fost aplicat"
+  },
+  "operations": {
+    "status": {
+      "title": "Fișierul hosts"
+    },
+    "reload": {
+      "title": "Reîncarcă fișierul hosts"
+    }
+  },
+  "settings": {
+    "admin": {
+      "alertOnError": {
+        "label": "Avertizează când fișierul hosts are probleme",
+        "description": "Trimite administratorilor o alertă când fișierul hosts nu poate fi citit sau când unele hosts nu sunt aplicate."
+      }
+    }
   }
 }

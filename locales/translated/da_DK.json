@@ -24,5 +24,21 @@
     "reloading": "Genindlæser...",
     "applied": "Værterfil anvendt",
     "notApplied": "Værterfilen har problemer og blev ikke anvendt"
+  },
+  "operations": {
+    "status": {
+      "title": "Værtsfil"
+    },
+    "reload": {
+      "title": "Genindlæs værtsfil"
+    }
+  },
+  "settings": {
+    "admin": {
+      "alertOnError": {
+        "label": "Advar, når værtsfilen har problemer",
+        "description": "Send en advarsel til administratorer, når værtsfilen ikke kan læses, eller nogle værter ikke kan anvendes."
+      }
+    }
   }
 }

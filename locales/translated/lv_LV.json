@@ -25,5 +25,21 @@
     "reloading": "Notiek pārlāde...",
     "applied": "Hostu fails piemērots",
     "notApplied": "Hostu failā ir problēmas, un tas netika piemērots"
+  },
+  "operations": {
+    "status": {
+      "title": "Hosts fails"
+    },
+    "reload": {
+      "title": "Pārlādēt hosts failu"
+    }
+  },
+  "settings": {
+    "admin": {
+      "alertOnError": {
+        "label": "Brīdināt, ja hosts failā ir problēmas",
+        "description": "Nosūtīt administratoriem brīdinājumu, ja hosts failu nevar izlasīt vai daži hosti netiek piemēroti."
+      }
+    }
   }
 }

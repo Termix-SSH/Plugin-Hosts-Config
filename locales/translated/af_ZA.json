@@ -24,5 +24,21 @@
     "reloading": "Herlaai...",
     "applied": "Hosts-lêer toegepas",
     "notApplied": "Die hosts-lêer het probleme en is nie toegepas nie"
+  },
+  "operations": {
+    "status": {
+      "title": "Gashereënlêer"
+    },
+    "reload": {
+      "title": "Herlaai gashereënlêer"
+    }
+  },
+  "settings": {
+    "admin": {
+      "alertOnError": {
+        "label": "Waarskuwing wanneer die gashereënlêer probleme het",
+        "description": "Stuur 'n waarskuwing aan administrateurs wanneer die gashereënlêer nie gelees kan word nie of wanneer sekere gashereëne nie toegepas is nie."
+      }
+    }
   }
 }

@@ -23,5 +23,21 @@
     "reloading": "Đang tải lại...",
     "applied": "Đã áp dụng tệp hosts",
     "notApplied": "Tệp hosts có lỗi và không được áp dụng"
+  },
+  "operations": {
+    "status": {
+      "title": "Tệp hosts"
+    },
+    "reload": {
+      "title": "Tải lại tệp hosts"
+    }
+  },
+  "settings": {
+    "admin": {
+      "alertOnError": {
+        "label": "Cảnh báo khi tệp hosts gặp sự cố",
+        "description": "Gửi cảnh báo cho quản trị viên khi không thể đọc tệp hosts hoặc một số máy chủ không được áp dụng."
+      }
+    }
   }
 }

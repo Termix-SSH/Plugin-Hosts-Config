@@ -26,5 +26,21 @@
     "reloading": "Perkraunama...",
     "applied": "Serverių failas taikytas",
     "notApplied": "Serverių faile yra problemų, todėl jis nebuvo taikytas"
+  },
+  "operations": {
+    "status": {
+      "title": "Hostų failas"
+    },
+    "reload": {
+      "title": "Perkrauti hostų failą"
+    }
+  },
+  "settings": {
+    "admin": {
+      "alertOnError": {
+        "label": "Pranešti, kai hostų faile yra problemų",
+        "description": "Siųsti administratoriams pranešimą, kai hostų failo nepavyksta perskaityti arba kai kai kurie hostai nėra pritaikyti."
+      }
+    }
   }
 }

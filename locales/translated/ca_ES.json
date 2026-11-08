@@ -25,5 +25,21 @@
     "reloading": "Recarregant...",
     "applied": "Fitxer d'amfitrions aplicat",
     "notApplied": "El fitxer d'amfitrions té problemes i no s'ha aplicat"
+  },
+  "operations": {
+    "status": {
+      "title": "Fitxer hosts"
+    },
+    "reload": {
+      "title": "Recarregar el fitxer hosts"
+    }
+  },
+  "settings": {
+    "admin": {
+      "alertOnError": {
+        "label": "Alertar quan el fitxer hosts tingui problemes",
+        "description": "Enviar una alerta als administradors quan no es pugui llegir el fitxer hosts o quan alguns hosts no s'apliquin."
+      }
+    }
   }
 }

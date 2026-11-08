@@ -23,5 +23,21 @@
     "reloading": "正在重新加载...",
     "applied": "主机文件已应用",
     "notApplied": "主机文件存在问题，未应用"
+  },
+  "operations": {
+    "status": {
+      "title": "主机文件"
+    },
+    "reload": {
+      "title": "重新加载主机文件"
+    }
+  },
+  "settings": {
+    "admin": {
+      "alertOnError": {
+        "label": "主机文件出现异常时发送警报",
+        "description": "当主机文件无法读取或部分主机未生效时，向管理员发送警报。"
+      }
+    }
   }
 }
