@@ -5,7 +5,6 @@
  */
 
 import { createHash } from "node:crypto";
-import fs from "node:fs";
 import path from "node:path";
 import type { PluginContext } from "@termix-ssh/plugin-sdk/backend";
 import { parseHostsFile } from "./config.js";
@@ -29,27 +28,103 @@ export interface LoaderStatus {
   lastResult: { created: number; updated: number; deleted: number } | null;
 }
 
+/** Reads the hosts file and the secrets it points at. */
 export interface LoaderDeps {
-  env: (name: string) => string | undefined;
-  readFile: (file: string) => string;
+  env: (name: string) => string | undefined | Promise<string | undefined>;
+  readFile: (file: string) => string | Promise<string>;
 }
-
-const nodeDeps: LoaderDeps = {
-  env: (name) => process.env[name],
-  readFile: (file) => fs.readFileSync(file, "utf8"),
-};
 
 type Ctx = Pick<
   PluginContext,
-  "hosts" | "asUser" | "credentials" | "log" | "settings" | "notify"
+  "hosts" | "asUser" | "credentials" | "log" | "settings" | "notify" | "files"
 >;
 
-export function createLoader(
-  ctx: Ctx,
-  store: MapStore,
-  deps: LoaderDeps = nodeDeps,
-) {
-  const file = deps.env(ENV_VAR)?.trim() || null;
+/**
+ * Termix reads the files: this process can only read its own folders. The
+ * hosts file comes through its env variable, secrets through config:secrets.
+ */
+export function ctxDeps(ctx: Pick<PluginContext, "files">): LoaderDeps {
+  const hostsFile = process.env[ENV_VAR]?.trim() || null;
+  return {
+    env: async (name) => {
+      if (name === ENV_VAR) return process.env[ENV_VAR];
+      return (await ctx.files.readSecret({ env: name })) ?? undefined;
+    },
+    readFile: async (file) => {
+      if (file === hostsFile) {
+        const read = await ctx.files.readEnvFile(ENV_VAR);
+        if (!read) throw new Error(`${ENV_VAR} is not set`);
+        return read.text;
+      }
+      const secret = await ctx.files.readSecret({ file });
+      if (secret === null) throw new Error("no such file");
+      return secret;
+    },
+  };
+}
+
+/** Every { env } and { file } secret a parsed hosts file points at. */
+export function secretRefs(
+  value: unknown,
+  out: SecretRefs = { env: new Set(), file: new Set() },
+): SecretRefs {
+  if (Array.isArray(value)) {
+    for (const item of value) secretRefs(item, out);
+  } else if (value && typeof value === "object") {
+    const keys = Object.keys(value);
+    const ref = value as { env?: unknown; file?: unknown };
+    if (keys.length === 1 && typeof ref.env === "string") out.env.add(ref.env);
+    else if (keys.length === 1 && typeof ref.file === "string") {
+      out.file.add(ref.file);
+    } else for (const item of Object.values(value)) secretRefs(item, out);
+  }
+  return out;
+}
+
+interface SecretRefs {
+  env: Set<string>;
+  file: Set<string>;
+}
+
+/** Reads every secret first, so planning stays synchronous. */
+async function prefetchSecrets(
+  refs: SecretRefs,
+  deps: LoaderDeps,
+): Promise<Pick<Lookups, "env" | "readFile">> {
+  const env = new Map<string, string | undefined>();
+  const files = new Map<string, string | Error>();
+  for (const name of refs.env) {
+    try {
+      env.set(name, await deps.env(name));
+    } catch {
+      env.set(name, undefined);
+    }
+  }
+  for (const file of refs.file) {
+    try {
+      files.set(file, await deps.readFile(file));
+    } catch (error) {
+      files.set(
+        file,
+        error instanceof Error ? error : new Error(String(error)),
+      );
+    }
+  }
+  return {
+    env: (name) => env.get(name),
+    readFile: (file) => {
+      const found = files.get(file);
+      if (found === undefined) throw new Error("not read");
+      if (found instanceof Error) throw found;
+      return found;
+    },
+  };
+}
+
+export function createLoader(ctx: Ctx, store: MapStore, deps?: LoaderDeps) {
+  const sources = deps ?? ctxDeps(ctx);
+  const raw = sources.env(ENV_VAR);
+  const file = (typeof raw === "string" ? raw.trim() : "") || null;
   const locked = new Map<number, string>();
   let appliedHash: string | null = null;
   let lastAlerted = "";
@@ -73,7 +148,10 @@ export function createLoader(
     status.hosts = locked.size;
   }
 
-  async function lookups(ownerNames: string[]): Promise<Lookups> {
+  async function lookups(
+    ownerNames: string[],
+    secrets: Pick<Lookups, "env" | "readFile">,
+  ): Promise<Lookups> {
     const users = new Map(
       (await ctx.hosts.listUsers()).map((u) => [
         u.username.toLowerCase(),
@@ -99,8 +177,7 @@ export function createLoader(
       users,
       roles,
       credentials,
-      env: deps.env,
-      readFile: deps.readFile,
+      ...secrets,
     };
   }
 
@@ -141,7 +218,7 @@ export function createLoader(
 
     let text: string;
     try {
-      text = deps.readFile(file);
+      text = await sources.readFile(file);
     } catch (error) {
       return fail([
         `Can't read ${file}: ${error instanceof Error ? error.message : String(error)}`,
@@ -159,7 +236,8 @@ export function createLoader(
         ...(parsed.file.owner ? [parsed.file.owner] : []),
         ...parsed.file.hosts.flatMap((h) => (h.owner ? [h.owner] : [])),
       ];
-      plan = planHosts(parsed.file, await lookups(owners));
+      const secrets = await prefetchSecrets(secretRefs(parsed.file), sources);
+      plan = planHosts(parsed.file, await lookups(owners, secrets));
     } catch (error) {
       return fail([
         `Could not look up users, roles or credentials: ${error instanceof Error ? error.message : String(error)}`,
@@ -200,6 +278,7 @@ export function createLoader(
       return next;
     },
     isLocked: (hostId: number) => !!file && locked.has(hostId),
+    lockedHosts: () => (file ? [...locked.keys()] : []),
     note: (hostId: number) => {
       const id = locked.get(hostId);
       return file && id ? `From ${path.basename(file)} (id ${id})` : null;
@@ -210,26 +289,28 @@ export function createLoader(
 
 export type Loader = ReturnType<typeof createLoader>;
 
-/** Polls the file, since inotify misses bind mounts and ConfigMap swaps. */
+/** How often the hosts file is checked for changes. */
+export const WATCH_MS = 3000;
+
+/**
+ * Polls the file, since inotify misses bind mounts and ConfigMap swaps. Each
+ * tick reads it through Termix and calls onChange when its contents changed.
+ */
 export function watchHostsFile(
-  file: string,
+  read: () => Promise<string | null>,
   onChange: () => void,
-  intervalMs = 3000,
-): () => void {
-  let timer: ReturnType<typeof setTimeout> | null = null;
-  const listener = (current: fs.Stats, previous: fs.Stats) => {
-    if (
-      current.mtimeMs === previous.mtimeMs &&
-      current.size === previous.size
-    ) {
+) {
+  let seen: string | null | undefined;
+  return async () => {
+    let text: string | null;
+    try {
+      text = await read();
+    } catch {
       return;
     }
-    if (timer) clearTimeout(timer);
-    timer = setTimeout(onChange, 500);
-  };
-  fs.watchFile(file, { interval: intervalMs, persistent: false }, listener);
-  return () => {
-    if (timer) clearTimeout(timer);
-    fs.unwatchFile(file, listener);
+    const hash =
+      text === null ? null : createHash("sha256").update(text).digest("hex");
+    if (seen !== undefined && hash !== seen) onChange();
+    seen = hash;
   };
 }

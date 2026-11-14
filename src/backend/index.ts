@@ -2,7 +2,13 @@ import type { Router } from "express";
 import type { PluginContext } from "@termix-ssh/plugin-sdk/backend";
 import { managedHosts } from "./tables.js";
 import { createMapStore } from "./store.js";
-import { createLoader, watchHostsFile, type LoaderDeps } from "./loader.js";
+import {
+  createLoader,
+  ENV_VAR,
+  WATCH_MS,
+  watchHostsFile,
+  type LoaderDeps,
+} from "./loader.js";
 import { registerRoutes } from "./routes.js";
 import { registerOperations } from "./operations.js";
 
@@ -27,6 +33,7 @@ export async function activateWith(ctx: PluginContext, deps?: LoaderDeps) {
     isLocked: loader.isLocked,
     note: loader.note,
     allowManualCreate: loader.allowManualCreate,
+    lockedHosts: loader.lockedHosts,
   });
 
   const load = () => {
@@ -39,7 +46,14 @@ export async function activateWith(ctx: PluginContext, deps?: LoaderDeps) {
       );
   };
   ctx.schedule.after(FIRST_LOAD_DELAY_MS, load);
-  ctx.disposables.add(watchHostsFile(file, load));
+  ctx.schedule.every(
+    WATCH_MS,
+    watchHostsFile(
+      async () => (await ctx.files.readEnvFile(ENV_VAR))?.text ?? null,
+      load,
+    ),
+    { id: "watch" },
+  );
   return loader;
 }
 
