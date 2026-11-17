@@ -9,7 +9,7 @@ import path from "node:path";
 import type { PluginContext } from "@termix-ssh/plugin-sdk/backend";
 import { parseHostsFile } from "./config.js";
 import { planHosts, type Lookups } from "./plan.js";
-import { applyPlan, type MapStore } from "./apply.js";
+import { applyPlan, type Fingerprints, type MapStore } from "./apply.js";
 
 export const ENV_VAR = "TERMIX_HOSTS_CONFIG";
 
@@ -127,6 +127,7 @@ export function createLoader(ctx: Ctx, store: MapStore, deps?: LoaderDeps) {
   const file = (typeof raw === "string" ? raw.trim() : "") || null;
   const locked = new Map<number, string>();
   let appliedHash: string | null = null;
+  const fingerprints: Fingerprints = new Map();
   let lastAlerted = "";
   let queue: Promise<unknown> = Promise.resolve();
   const status: LoaderStatus = {
@@ -245,7 +246,7 @@ export function createLoader(ctx: Ctx, store: MapStore, deps?: LoaderDeps) {
     }
     if ("errors" in plan) return fail(plan.errors);
 
-    const report = await applyPlan(ctx, store, plan.hosts);
+    const report = await applyPlan(ctx, store, plan.hosts, fingerprints);
     await refreshLocks();
     appliedHash = report.errors.length === 0 ? hash : null;
     status.strict = plan.strict;

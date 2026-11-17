@@ -8,6 +8,10 @@
 - Termix reads the hosts file and the `{ env }` and `{ file }` secrets it points at for the plugin. Secrets need the new Read secrets the server holds access, which an admin approves with the update. Termix's own keys and data folder can't be used as secrets
 - The hosts file must sit outside Termix's data folder
 
+### Fixed
+
+- A reload only writes the hosts that changed, so a large hosts file no longer times out when one host changes
+
 ## 1.1.0
 
 ### Added
