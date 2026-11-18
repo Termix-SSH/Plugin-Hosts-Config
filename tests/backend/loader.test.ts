@@ -142,11 +142,48 @@ hosts:
       updated: 0,
       deleted: 0,
     });
+    // Forced, but no host changed, so none is written again.
     expect((await l.load(true)).lastResult).toEqual({
       created: 0,
-      updated: 2,
+      updated: 0,
       deleted: 0,
     });
+  });
+
+  it("only writes the hosts that changed in a large file", async () => {
+    const hostsFile = (ip: (i: number) => string) =>
+      `owner: admin
+hosts:
+${Array.from(
+  { length: 150 },
+  (_, i) => `  - { id: h${i}, ip: ${ip(i)}, username: deploy }
+`,
+).join("")}`;
+    files["/c/hosts.yaml"] = hostsFile((i) => `10.0.${i >> 8}.${i & 255}`);
+    const l = loader();
+    expect((await l.load()).lastResult).toMatchObject({ created: 150 });
+
+    let writes = 0;
+    const update = ctx.hosts.update;
+    const setShares = ctx.hosts.setShares;
+    ctx.hosts.update = (async (...args: Parameters<typeof update>) => {
+      writes++;
+      return update(...args);
+    }) as typeof update;
+    ctx.hosts.setShares = (async (...args: Parameters<typeof setShares>) => {
+      writes++;
+      return setShares(...args);
+    }) as typeof setShares;
+
+    files["/c/hosts.yaml"] = hostsFile((i) =>
+      i === 7 ? "10.9.9.9" : `10.0.${i >> 8}.${i & 255}`,
+    );
+    const status = await l.load();
+    expect(status.lastResult).toEqual({ created: 0, updated: 1, deleted: 0 });
+    expect(writes).toBe(2);
+    const h7 = store.rows.get("h7")!.hostId;
+    const hosts = await ctx.hosts.listOwned();
+    expect(hosts.find((h) => h.id === h7)!.ip).toBe("10.9.9.9");
   });
 
   it("keeps the user's pin after the first load", async () => {

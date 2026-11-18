@@ -3,7 +3,13 @@
  * reloads, so shares, recordings and history stay attached. Ids gone from the
  * file are deleted. A failed write is reported and the rest still applies;
  * the next reload fixes it since every id is stable.
+ *
+ * A host whose planned input is the same as the last write is skipped, so a
+ * reload of a large file only touches what changed. The fingerprints live in
+ * memory only, since the input holds secrets.
  */
+
+import { createHash } from "node:crypto";
 
 import type {
   PluginContext,
@@ -32,6 +38,19 @@ export interface ApplyReport {
 
 type Ctx = Pick<PluginContext, "hosts" | "asUser">;
 
+/** Last written fingerprint per config id. */
+export type Fingerprints = Map<string, { hostId: number; hash: string }>;
+
+function fingerprint(
+  host: PlannedHost,
+  jumpHosts: Array<{ hostId: number }>,
+): string {
+  const { pin: _pin, ...input } = host.input;
+  return createHash("sha256")
+    .update(JSON.stringify([host.ownerId, input, jumpHosts, host.shares]))
+    .digest("hex");
+}
+
 function message(error: unknown): string {
   return error instanceof Error ? error.message : String(error);
 }
@@ -40,6 +59,7 @@ export async function applyPlan(
   ctx: Ctx,
   store: MapStore,
   plan: PlannedHost[],
+  fingerprints: Fingerprints = new Map(),
 ): Promise<ApplyReport> {
   const report: ApplyReport = {
     created: 0,
@@ -55,6 +75,7 @@ export async function applyPlan(
       await ctx.asUser(row.ownerId, () => ctx.hosts.delete(row.hostId));
       await store.remove(row.configId);
       rows.delete(row.configId);
+      fingerprints.delete(row.configId);
       report.deleted++;
     } catch (error) {
       report.errors.push(
@@ -76,15 +97,36 @@ export async function applyPlan(
       ? host.jumpHosts.map((id) => ({ hostId: hostIds.get(id) as number }))
       : undefined;
 
+  // A host deleted outside the file is never skipped.
+  const alive = new Set<number>();
+  if (fingerprints.size > 0) {
+    for (const ownerId of new Set(plan.map((host) => host.ownerId))) {
+      try {
+        const owned = await ctx.asUser(ownerId, () => ctx.hosts.listOwned());
+        for (const host of owned) alive.add(host.id);
+      } catch {
+        // Nothing is skipped for this owner
+      }
+    }
+  }
+
   const written: PlannedHost[] = [];
   const needsJumpHosts = new Set<string>();
   for (const host of plan) {
+    const existing = rows.get(host.configId);
+    const jumpHosts = jumpHostsFor(host);
+    if (existing && jumpHosts && alive.has(existing.hostId)) {
+      const hash = fingerprint(host, jumpHosts);
+      const last = fingerprints.get(host.configId);
+      if (last && last.hostId === existing.hostId && last.hash === hash) {
+        continue;
+      }
+    }
+    fingerprints.delete(host.configId);
     try {
       await ctx.asUser(host.ownerId, async () => {
-        const existing = rows.get(host.configId);
         // Pins stay the user's own after the first load.
         const { pin: _pin, ...rest } = host.input;
-        const jumpHosts = jumpHostsFor(host);
         if (!jumpHosts) needsJumpHosts.add(host.configId);
         if (existing) {
           const patch: PluginHostUpdateInput = { ...rest };
@@ -134,6 +176,13 @@ export async function applyPlan(
         if (!shared.shared) {
           throw new Error(`sharing refused (${shared.reason ?? "unknown"})`);
         }
+      });
+      fingerprints.set(host.configId, {
+        hostId,
+        hash: fingerprint(
+          host,
+          host.jumpHosts.map((id) => ({ hostId: hostIds.get(id) as number })),
+        ),
       });
     } catch (error) {
       report.errors.push(`${host.configId}: ${message(error)}`);
