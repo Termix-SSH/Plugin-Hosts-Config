@@ -46,9 +46,11 @@ type Ctx = Pick<
 export function ctxDeps(ctx: Pick<PluginContext, "files">): LoaderDeps {
   const hostsFile = process.env[ENV_VAR]?.trim() || null;
   return {
-    env: async (name) => {
+    env: (name) => {
+      // createLoader reads the hosts file's path without awaiting, so this
+      // one must answer at once; secrets still come from core.
       if (name === ENV_VAR) return process.env[ENV_VAR];
-      return (await ctx.files.readSecret({ env: name })) ?? undefined;
+      return ctx.files.readSecret({ env: name }).then((v) => v ?? undefined);
     },
     readFile: async (file) => {
       if (file === hostsFile) {
